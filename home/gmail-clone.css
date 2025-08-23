@@ -540,7 +540,6 @@ body {
 .sidebar.collapsed .nav-item .arrow {
     display: none;
 }
- 
 .sidebar.collapsed .sub-menu {
     padding-left: 0;
 }
@@ -584,9 +583,15 @@ body {
 }
 
 .sidebar.collapsed:hover .nav-item .arrow,
-.sidebar.collapsed:hover .nav-menu > .nav-item:not(.has-submenu)::before {
+.sidebar.collapsed:hover .nav-menu .nav-item:not(.has-submenu)::before {
     content: '';
     display: block;
     width: 16px;
     order: -1;
+}
+
+.sidebar.collapsed:hover .nav-item .arrow {
+    transition: transform 0.2s ease-in-out;
+    order: -1;
+    margin-right: 0px;
 }
