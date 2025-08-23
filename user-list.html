@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List - jqGrid 5.8.10 功能展示</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Dependencies - 本地文件 -->
+    <!-- 1. Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="dist/bootstrap/css/bootstrap.min.css">
+    <!-- 2. Bootstrap Icons -->
+    <link rel="stylesheet" href="dist/bootstrap/css/bootstrap-icons.css">
+    <!-- 3. jQuery UI 主题 CSS (图标支持) -->
+    <link rel="stylesheet" href="dist/jquery-ui/jquery-ui.css">
+    <!-- 4. jqGrid 5.8.10 标准主题 CSS -->
+    <link rel="stylesheet" href="dist/jqgrid/css/ui.jqgrid.min.css">
+    <!-- 5. jqGrid 样式覆盖 - Gmail Clone 风格 -->
+    <link rel="stylesheet" href="jqgrid-css-override.css">
+
+
+</head>
+<body>
+
+    <div class="container-fluid">
+        <h1 class="text-center mb-4">jqGrid 5.8.10 功能展示</h1>
+        <p class="text-center text-muted mb-5">展示最新版本 jqGrid 的高级功能和特性</p>
+        
+        <!-- 基础表格功能 -->
+        <div class="feature-demo">
+            <div class="grid-container">
+                <h3 class="demo-title"><i class="bi bi-table"></i> 基础表格功能</h3>
+                <table id="grid1"></table>
+                <div id="pager1"></div>
+            </div>
+        </div>
+
+        <!-- 高级编辑功能 -->
+        <div class="feature-demo">
+            <div class="grid-container">
+                <h3 class="demo-title"><i class="bi bi-pencil-square"></i> 行内编辑功能</h3>
+                <table id="grid2"></table>
+                <div id="pager2"></div>
+            </div>
+        </div>
+
+        <!-- 分组功能 -->
+        <div class="feature-demo">
+            <div class="grid-container">
+                <h3 class="demo-title"><i class="bi bi-collection"></i> 数据分组功能</h3>
+                <table id="grid3"></table>
+                <div id="pager3"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT DEPENDENCIES - 本地文件 -->
+    <!-- ** 加载顺序至关重要 ** -->
+
+    <!-- 1. jQuery (必须首先加载) -->
+    <script src="dist/jquery/3.7.1/jquery.min.js"></script>
+    
+    <!-- 2. Bootstrap JS (依赖 jQuery) -->
+    <script src="dist/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 3. jqGrid 语言包 (依赖 jQuery) -->
+    <script src="dist/jqgrid/js/i18n/grid.locale-en.min.js"></script>
+    
+    <!-- 4. jqGrid 5.8.10 主程序 (依赖 jQuery 和语言包) -->
+    <script src="dist/jqgrid/js/jquery.jqGrid.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        console.log('jqGrid 5.8.10 初始化开始...');
+        console.log('jQuery 版本:', $.fn.jquery);
+        console.log('jqGrid 可用:', typeof $.fn.jqGrid !== 'undefined');
+
+        // 示例数据
+        var userData = [
+            { id: "1", name: "张三", email: "zhangsan@example.com", department: "技术部", salary: 8000, active: true, joinDate: "2020-01-15" },
+            { id: "2", name: "李四", email: "lisi@example.com", department: "技术部", salary: 9500, active: true, joinDate: "2019-03-20" },
+            { id: "3", name: "王五", email: "wangwu@example.com", department: "市场部", salary: 7500, active: false, joinDate: "2021-06-10" },
+            { id: "4", name: "赵六", email: "zhaoliu@example.com", department: "市场部", salary: 8200, active: true, joinDate: "2020-09-05" },
+            { id: "5", name: "钱七", email: "qianqi@example.com", department: "人事部", salary: 7000, active: true, joinDate: "2022-01-12" },
+            { id: "6", name: "孙八", email: "sunba@example.com", department: "人事部", salary: 7800, active: false, joinDate: "2021-11-30" },
+            { id: "7", name: "周九", email: "zhoujiu@example.com", department: "财务部", salary: 8500, active: true, joinDate: "2020-04-18" },
+            { id: "8", name: "吴十", email: "wushi@example.com", department: "财务部", salary: 9000, active: true, joinDate: "2019-08-25" }
+        ];
+
+        // 基础表格 - 展示搜索、排序、分页功能
+        $("#grid1").jqGrid({
+            data: userData,
+            datatype: "local",
+            colModel: [
+                { label: 'ID', name: 'id', key: true, width: 60, sorttype: 'int' },
+                { label: '姓名', name: 'name', width: 100, search: true },
+                { label: '邮箱', name: 'email', width: 180, search: true },
+                { label: '部门', name: 'department', width: 100, search: true },
+                { label: '薪资', name: 'salary', width: 80, formatter: 'currency', sorttype: 'number', search: true, searchoptions: { sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge'] } },
+                { label: '状态', name: 'active', width: 80, formatter: function(cellvalue) {
+                    return cellvalue ? '<span class="badge bg-success">在职</span>' : '<span class="badge bg-secondary">离职</span>';
+                }},
+                { label: '入职日期', name: 'joinDate', width: 100, formatter: 'date', formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } }
+            ],
+            pager: "#pager1",
+            rowNum: 5,
+            rowList: [5, 10, 20],
+            viewrecords: true,
+            caption: "员工信息管理 - 基础功能",
+            height: 250,
+            width: null,
+            shrinkToFit: true,
+            rownumbers: true,
+            multiselect: true,
+            sortname: 'id',
+            sortorder: 'asc',
+            loadComplete: function() {
+                console.log('Grid1 loaded successfully');
+            }
+        });
+
+        // 添加搜索工具栏
+        $("#grid1").jqGrid('filterToolbar', {
+            searchOnEnter: false,
+            enableClear: true
+        });
+
+        // 行内编辑表格
+        $("#grid2").jqGrid({
+            data: JSON.parse(JSON.stringify(userData)), // 深拷贝数据
+            datatype: "local",
+            colModel: [
+                { label: 'ID', name: 'id', key: true, width: 60, editable: false },
+                { label: '姓名', name: 'name', width: 100, editable: true, editrules: { required: true } },
+                { label: '邮箱', name: 'email', width: 180, editable: true, editrules: { required: true, email: true } },
+                { label: '部门', name: 'department', width: 100, editable: true, edittype: 'select', 
+                  editoptions: { value: '技术部:技术部;市场部:市场部;人事部:人事部;财务部:财务部' } },
+                { label: '薪资', name: 'salary', width: 80, editable: true, editrules: { number: true, minValue: 1000 }, 
+                  formatter: 'currency', sorttype: 'number' },
+                { label: '状态', name: 'active', width: 80, editable: true, edittype: 'checkbox', 
+                  editoptions: { value: 'true:false' }, formatter: 'checkbox' }
+            ],
+            pager: "#pager2",
+            rowNum: 6,
+            rowList: [6, 12, 20],
+            viewrecords: true,
+            caption: "员工信息管理 - 行内编辑",
+            height: 300,
+            width: null,
+            shrinkToFit: true,
+            rownumbers: true,
+            sortname: 'id',
+            sortorder: 'asc',
+            cellEdit: true,
+            cellsubmit: 'clientArray',
+            loadComplete: function() {
+                console.log('Grid2 loaded successfully');
+            }
+        });
+
+        // 分组表格
+        $("#grid3").jqGrid({
+            data: JSON.parse(JSON.stringify(userData)), // 深拷贝数据
+            datatype: "local",
+            colModel: [
+                { label: 'ID', name: 'id', key: true, width: 60, sorttype: 'int' },
+                { label: '姓名', name: 'name', width: 100 },
+                { label: '邮箱', name: 'email', width: 180 },
+                { label: '部门', name: 'department', width: 100 },
+                { label: '薪资', name: 'salary', width: 80, formatter: 'currency', sorttype: 'number', summaryType: 'avg' },
+                { label: '状态', name: 'active', width: 80, formatter: function(cellvalue) {
+                    return cellvalue ? '<span class="badge bg-success">在职</span>' : '<span class="badge bg-secondary">离职</span>';
+                }}
+            ],
+            pager: "#pager3",
+            rowNum: 8,
+            rowList: [8, 16, 24],
+            viewrecords: true,
+            caption: "员工信息管理 - 按部门分组",
+            height: 350,
+            width: null,
+            shrinkToFit: true,
+            grouping: true,
+            groupingView: {
+                groupField: ['department'],
+                groupColumnShow: [false],
+                groupText: ['<b>部门: {0}</b> ({1} 人)'],
+                groupCollapse: false,
+                groupOrder: ['asc'],
+                groupSummary: [true],
+                groupDataSorted: true
+            },
+            sortname: 'department',
+            sortorder: 'asc',
+            loadComplete: function() {
+                console.log('Grid3 loaded successfully');
+            }
+        });
+
+        // 为所有表格添加导航按钮
+        $("#grid1").jqGrid('navGrid', '#pager1', {
+            edit: false, add: false, del: false, search: true, refresh: true
+        });
+
+        $("#grid2").jqGrid('navGrid', '#pager2', {
+            edit: true, add: true, del: true, search: true, refresh: true
+        });
+
+        $("#grid3").jqGrid('navGrid', '#pager3', {
+            edit: false, add: false, del: false, search: true, refresh: true
+        });
+
+        console.log('jqGrid 5.8.10 初始化完成!');
+    });
+    </script>
+
+</body>
+</html>
