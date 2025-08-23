@@ -585,6 +585,8 @@ body {
 
 .sidebar.collapsed:hover .nav-item .arrow,
 .sidebar.collapsed:hover .nav-menu > .nav-item:not(.has-submenu)::before {
+    content: '';
     display: block;
-    margin-right: 0px;
+    width: 16px;
+    order: -1;
 }
