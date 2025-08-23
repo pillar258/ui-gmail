@@ -388,7 +388,7 @@ body {
     font-size: 12px;
 }
 
-.nav-item .arrow {
+.nav-item .arrow,.sidebar.collapsed:hover .nav-item .arrow {
     transition: transform 0.2s ease-in-out;
     order: -1;
     margin-right: 0px;
@@ -588,10 +588,4 @@ body {
     display: block;
     width: 16px;
     order: -1;
-}
-
-.sidebar.collapsed:hover .nav-item .arrow {
-    transition: transform 0.2s ease-in-out;
-    order: -1;
-    margin-right: 0px;
-}
+} 
