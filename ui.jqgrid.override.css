@@ -1,0 +1,119 @@
+/* jqGrid主题覆盖样式 - 与Gmail Clone主题保持一致 */
+
+/* 整体表格容器 */
+.ui-jqgrid {
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15) !important;
+    background-color: #fff !important;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+/* 表格标题 */
+.ui-jqgrid .ui-jqgrid-title {
+    color: #202124 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    padding: 4px 8px !important;
+}
+
+.ui-jqgrid .ui-jqgrid-titlebar {
+    background: #f6f8fc !important;
+    border: none !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    border-radius: 8px 8px 0 0 !important;
+    height: 36px;
+}
+ 
+/* 顶部工具栏样式 */
+.ui-jqgrid .ui-jqgrid-toppager {
+    background: #f6f8fc !important;
+    border: none !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    padding: 4px 0px !important;
+    border-radius: 8px 8px 0 0 !important;
+}
+/* 工具栏按钮样式 */ 
+.ui-jqgrid .ui-pg-button {
+    background: none !important;
+    border: 1px solid transparent !important;
+    border-radius: 20px !important;
+    padding: 2px 8px !important;
+    margin: 0 2px !important;
+    color: #202124 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.ui-jqgrid .ui-pg-button:hover {
+    background-color: #e8eaed !important;
+    border-color: transparent !important;
+}
+
+.ui-jqgrid .ui-pg-button.ui-state-active {
+    background-color: #e8eaf6 !important;
+    color: #1a73e8 !important;
+    border-color: transparent !important;
+}
+
+ /* 隐藏顶部分页器中的分页元素，只保留功能按钮 */
+.ui-jqgrid .ui-jqgrid-toppager .ui-paging-pager,
+.ui-jqgrid .ui-jqgrid-toppager .ui-paging-info{
+    display: none !important;
+}
+
+/* 表格头部 */
+
+.ui-jqgrid-hdiv .ui-state-default{
+    background: #f6f8fc !important;
+    color: #202124 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+.ui-jqgrid .ui-jqgrid-hdiv {
+    background: #f6f8fc !important;
+    border: none !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+} 
+
+.ui-jqgrid .ui-jqgrid-htable thead tr.ui-jqgrid-labels th {
+    border: none !important;
+    border-right: 1px solid #e0e0e0 !important;
+} 
+
+
+/* 表格行样式 */
+.ui-jqgrid .jqgrid-rownum{
+    background: #f6f8fc !important;
+    color: #202124 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+} 
+
+.ui-jqgrid tr.ui-row-ltr td {
+    border: none !important;
+    border-right: 1px solid #f0f0f0 !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    /* padding: 12px 8px !important; */
+    /* color: #202124 !important; */
+    font-size: 14px !important;
+}
+ 
+/* 选中行样式 */
+.ui-jqgrid tr.ui-state-highlight {
+    background-color: #e8f0fe !important;
+    color: #202124 !important;
+}
+
+
+
+/* 底部分页器样式 */
+.ui-jqgrid .ui-jqgrid-pager {
+    background: #f6f8fc !important;
+    border: none !important;
+    border-top: 1px solid #e0e0e0 !important;
+    color: #202124 !important;
+    padding: 4px 0px !important;
+    border-radius: 0 0 8px 8px !important;
+    height: 36px;
+}
