@@ -1,0 +1,4 @@
+#Release Notes
+
+For latest information see:
+http://www.guriddo.net/documentation/guriddo/javascript/about/release-notes/

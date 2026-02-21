@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!-- The jQuery library is a prerequisite for all jqSuite products -->
+    <script src="../../../js/jquery.min.js"></script> 
+    <!-- This is the Javascript file of jqGrid -->   
+    <script src="../../../js/trirand/jquery.jqGrid.min.js"></script>
+    <!-- This is the localization file of the grid controlling messages, labels, etc.
+    <!-- We support more than 40 localizations -->
+    <script src="../../../js/trirand/i18n/grid.locale-en.js"></script>
+
+    <!-- A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../css/jquery-ui.css" />
+    <!-- The link to the CSS that the grid needs -->
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../css/trirand/ui.jqgrid.css" />
+    <meta charset="utf-8" />
+    <title>jqGrid Loading Data - JSON</title>
+</head>
+<body>
+
+    <table id="grid"></table>
+    <div id="gridPager"></div>
+	
+	<div style="width:750px;text-align: center;transform: rotate(90deg); margin: 15px 0;"> => </div>
+    <table id="grid1"></table>
+    <div id="grid1Pager"></div>
+
+    <script> 
+	var matrix = [
+		{ "Sales" : "Q1" , "Europe" : "21300", "Asia" : "3200", "NorthAmerica" : "45222", id: 1 },
+		{ "Sales" : "Q2" , "Europe" : "11300", "Asia" : "3200", "NorthAmerica" : "45222" , id: 2},
+		{ "Sales" : "Q3" , "Europe" : "31300", "Asia" : "3200", "NorthAmerica" : "45222", id: 3 },
+		{ "Sales" : "Q4" , "Europe" : "41300", "Asia" : "3200", "NorthAmerica" : "45222", id: 4 }	
+	];
+
+    
+$(document).ready(function () {
+	$("#grid").jqGrid({
+		datatype : 'local',
+		data: matrix,
+		height : 100,
+		colModel : [
+			{name : "Sales"},
+			{name : "Europe"},
+			{name : "Asia"},
+			{name : "NorthAmerica"}
+		],
+		sortname : "Sales",
+		width : 750,
+		pager : "gridPager"
+	}).jqGrid('setFrozenRows',{first: 1, classes: 'myclass',saveFirstLastId : true});
+// trnsform data and build colModel
+	
+	$("#grid1").jqGrid('jqTranspose', 
+		matrix,
+		{
+			beforeCreateGrid : function( result, source) {
+				var res = result.rows;
+				for(var i=0;i<res.length; i++) {
+					if(res[i]['col_name'] === 'NorthAmerica') {
+						res[i]['col_name'] = 'North America';
+					}
+				}
+			},
+			excludeSrcCols : ["id"]
+		}, 
+		{
+		pager:"grid1Pager",
+		width : 750,
+		height : 100
+	});
+
+});
+
+    </script>
+
+    <!-- This code is related to code tabs -->
+    <br />
+    <span style="font-size: 12px; font-family: Tahoma">Click on the Tabs below the see the relevant code for the example:</span>
+    <br /><br />
+    <div id="codetabs" style="height: 400px; font-size:65%;"></div>
+    <script src="../../../js/jquery-ui.min.js"></script>
+    <script src="../../../js/prettify/prettify.js"></script>
+    <link rel="stylesheet" href="../../../css/prettify.css" />
+    <script src="../../../js/codetabs.js"></script>
+	<script src="../../../js/themeswitchertool.js"></script>
+    
+    <script>
+
+        var tabData =
+            [
+                { name: "HTML", url: "index.html", lang: "lang-html" },
+				{ name: "Description", url: "description.html", lang: "lang-html" }
+            ];
+
+        codeTabs(tabData);
+
+    </script>
+    <!-- End of code related to code tabs -->
+</body>
+</html>

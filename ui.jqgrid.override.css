@@ -117,3 +117,32 @@
     border-radius: 0 0 8px 8px !important;
     height: 36px;
 }
+
+/* 修改图标颜色为黑色 */
+.ui-jqgrid .ui-icon,
+.ui-jqgrid .ui-widget-content .ui-icon,
+.ui-jqgrid .ui-widget-header .ui-icon {
+    background-image: url(css/images/ui-icons_222222_256x240.png) !important;
+}
+
+.ui-jqgrid .ui-state-default .ui-icon {
+    background-image: url(css/images/ui-icons_222222_256x240.png) !important;
+}
+
+.ui-jqgrid .ui-state-hover .ui-icon, 
+.ui-jqgrid .ui-state-focus .ui-icon {
+    background-image: url(css/images/ui-icons_222222_256x240.png) !important;
+}
+
+.ui-jqgrid .ui-state-active .ui-icon {
+    background-image: url(css/images/ui-icons_222222_256x240.png) !important;
+}
+
+.ui-jqgrid .ui-state-highlight .ui-icon {
+    background-image: url(css/images/ui-icons_222222_256x240.png) !important;
+}
+
+.ui-jqgrid .ui-state-error .ui-icon,
+.ui-jqgrid .ui-state-error-text .ui-icon {
+    background-image: url(css/images/ui-icons_222222_256x240.png) !important;
+}
